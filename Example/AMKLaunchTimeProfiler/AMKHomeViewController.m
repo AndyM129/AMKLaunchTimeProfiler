@@ -1,19 +1,18 @@
 //
-//  AMKViewController.m
-//  AMKLaunchTimeProfiler
+//  AMKHomeViewController.m
+//  AMKLaunchTimeProfiler_Example
 //
-//  Created by mengxinxin on 06/22/2022.
-//  Copyright (c) 2022 mengxinxin. All rights reserved.
+//  Created by mengxinxin on 2022/5/11.
+//  Copyright © 2022 mengxinxin. All rights reserved.
 //
 
-#import "AMKViewController.h"
-#import <AMKLaunchTimeProfiler/AMKLaunchTimeProfiler.h>
+#import "AMKHomeViewController.h"
 
-@interface AMKViewController ()
+@interface AMKHomeViewController ()
 
 @end
 
-@implementation AMKViewController
+@implementation AMKHomeViewController
 
 #pragma mark - Dealloc
 
@@ -25,8 +24,8 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.title = @"Other";
-        self.tabBarItem.title = self.title;
+        self.title = @"AMKLaunchTimeProfiler";
+        self.tabBarItem.title = @"Home";
     }
     return self;
 }
@@ -36,8 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     AMKLaunchTimeProfilerOnceLogBegin(@"");
-    self.title = @"Other";
     self.view.backgroundColor = self.view.backgroundColor?:[UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem =
+    [UIBarButtonItem.alloc initWithTitle:@"日志" style:UIBarButtonItemStylePlain target:self action:@selector(logsBarButtonItemClicked:)];
     AMKLaunchTimeProfilerOnceLogEnd(@"");
 }
 
@@ -69,6 +69,10 @@
 
 #pragma mark - Private Methods
 
+- (void)logsBarButtonItemClicked:(id)sender {
+    [AMKLaunchTimeProfilerLogsViewController.new presentingWithAnimated:YES completion:nil];
+}
+
 #pragma mark - Notifications
 
 #pragma mark - KVO
@@ -78,5 +82,6 @@
 #pragma mark - Overrides
 
 #pragma mark - Helper Methods
+
 
 @end

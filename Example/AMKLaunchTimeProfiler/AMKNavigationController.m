@@ -1,19 +1,18 @@
 //
-//  AMKViewController.m
-//  AMKLaunchTimeProfiler
+//  AMKNavigationController.m
+//  AMKLaunchTimeProfiler_Example
 //
-//  Created by mengxinxin on 06/22/2022.
-//  Copyright (c) 2022 mengxinxin. All rights reserved.
+//  Created by mengxinxin on 2022/5/11.
+//  Copyright © 2022 mengxinxin. All rights reserved.
 //
 
-#import "AMKViewController.h"
-#import <AMKLaunchTimeProfiler/AMKLaunchTimeProfiler.h>
+#import "AMKNavigationController.h"
 
-@interface AMKViewController ()
+@interface AMKNavigationController ()
 
 @end
 
-@implementation AMKViewController
+@implementation AMKNavigationController
 
 #pragma mark - Dealloc
 
@@ -23,22 +22,17 @@
 
 #pragma mark - Init Methods
 
-- (instancetype)init {
-    if (self = [super init]) {
-        self.title = @"Other";
-        self.tabBarItem.title = self.title;
-    }
-    return self;
-}
-
 #pragma mark - Life Circle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AMKLaunchTimeProfilerOnceLogBegin(@"");
-    self.title = @"Other";
-    self.view.backgroundColor = self.view.backgroundColor?:[UIColor whiteColor];
-    AMKLaunchTimeProfilerOnceLogEnd(@"");
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appperance = [UINavigationBarAppearance.alloc init];
+        appperance.backgroundColor = [UIColor colorWithRed:243/255.0 green:243/255.0 blue:243/255.0 alpha:1.0];
+        [appperance setTitleTextAttributes:@{NSForegroundColorAttributeName:UIColor.darkTextColor}];
+        self.navigationBar.standardAppearance = appperance;
+        self.navigationBar.scrollEdgeAppearance = appperance;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,8 +41,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    AMKLaunchTimeProfilerOnceLogBegin(@"");
-    AMKLaunchTimeProfilerOnceLogEnd(@"");
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

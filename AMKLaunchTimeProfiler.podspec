@@ -7,36 +7,20 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'AMKLaunchTimeProfiler'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of AMKLaunchTimeProfiler.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
-
-  s.homepage         = 'https://github.com/mengxinxin/AMKLaunchTimeProfiler'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'mengxinxin' => 'mengxinxin@baidu.com' }
-  s.source           = { :git => 'https://github.com/mengxinxin/AMKLaunchTimeProfiler.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.ios.deployment_target = '9.0'
-
-  s.source_files = 'AMKLaunchTimeProfiler/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'AMKLaunchTimeProfiler' => ['AMKLaunchTimeProfiler/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    s.name             = 'AMKLaunchTimeProfiler'
+    s.version          = '1.0.0'
+    s.summary          = 'iOS application cold launch time consumption analysis tool.'
+    s.description      = 'iOS application cold launch time consumption analysis tool.'
+    s.homepage         = 'https://github.com/AndyM129/AMKLaunchTimeProfiler'
+    s.license          = { :type => 'MIT', :file => 'LICENSE' }
+    s.author           = { 'MengXinxin' => 'andy_m129@baidu.com' }
+    s.source           = { :git => 'https://github.com/AndyM129/AMKLaunchTimeProfiler.git', :tag => s.version.to_s }
+    s.ios.deployment_target = '9.0'
+    s.source_files = 'AMKLaunchTimeProfiler/Classes/**/*.{h,m}'
+    s.public_header_files = 'AMKLaunchTimeProfiler/Classes/Core/*.h'
+    s.frameworks = 'UIKit'
+    s.dependency 'YYCache'
+    s.dependency 'YYModel'
+    s.dependency 'Aspects'
+    s.dependency 'SSZipArchive'
 end

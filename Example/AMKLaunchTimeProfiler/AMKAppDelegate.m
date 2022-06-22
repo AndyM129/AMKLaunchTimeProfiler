@@ -7,40 +7,41 @@
 //
 
 #import "AMKAppDelegate.h"
+#import "AMKRootViewController.h"
+#import <FLEX/FLEX.h>
 
 @implementation AMKAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    AMKLaunchTimeProfiler.debugEnable = YES;
+    AMKLaunchTimeProfiler.mailRecipients = @[@"example@email.com"];
+    AMKLaunchTimeProfilerOnceLogBegin(@"");
+    
+    self.window = [UIWindow.alloc initWithFrame:UIScreen.mainScreen.bounds];
+    self.window.rootViewController = [AMKRootViewController.alloc init];
+    [self.window makeKeyAndVisible];
+    
+    // Log 测试
+    [AMKLaunchTimeProfiler.sharedInstance logWithFunction:__FUNCTION__ line:__LINE__ string:@"hello"];
+    AMKLaunchTimeProfilerLog(@"world");
+    
+    // 监听通知
+    [NSNotificationCenter.defaultCenter addObserverForName:AMKLaunchTimeProfilerApplicationDidFinishLaunchingNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        NSLog(@"AMKLaunchTimeProfilerApplicationDidFinishLaunchingNotification");
+    }];
+    [NSNotificationCenter.defaultCenter addObserverForName:AMKLaunchTimeProfilerFirstScreenDidDisplayNotification object:nil queue:NSOperationQueue.mainQueue usingBlock:^(NSNotification * _Nonnull note) {
+        NSLog(@"AMKLaunchTimeProfilerFirstScreenDidDisplayNotification");
+        
+        // 此时已完成首屏的显示，可以参考如下代码，实现相关数据的上报
+        //
+        // [BaiduMobStat.defaultStat logEventWithDurationTime:@"TotalTimeConsuming" durationTime:BDESharedLaunchTimeProfiler.totalTimeConsuming*1000 attributes:@{@"TimeConsuming": @(BDESharedLaunchTimeProfiler.totalTimeConsuming*1000).stringValue}];
+        // [BaiduMobStat.defaultStat logEventWithDurationTime:@"PreMainTimeConsuming" durationTime:BDESharedLaunchTimeProfiler.preMainTimeConsuming*1000 attributes:@{@"TimeConsuming": @(BDESharedLaunchTimeProfiler.preMainTimeConsuming*1000).stringValue}];
+        // [BaiduMobStat.defaultStat logEventWithDurationTime:@"MainTimeConsuming" durationTime:BDESharedLaunchTimeProfiler.mainTimeConsuming*1000 attributes:@{@"TimeConsuming": @(BDESharedLaunchTimeProfiler.mainTimeConsuming*1000).stringValue}];
+        // [BaiduMobStat.defaultStat logEventWithDurationTime:@"FirstScreenTimeConsuming" durationTime:BDESharedLaunchTimeProfiler.firstScreenTimeConsuming*1000 attributes:@{@"TimeConsuming": @(BDESharedLaunchTimeProfiler.firstScreenTimeConsuming*1000).stringValue}];
+    }];
+    
+    AMKLaunchTimeProfilerOnceLogEnd(@"");
     return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end

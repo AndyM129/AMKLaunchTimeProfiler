@@ -1,19 +1,22 @@
 //
-//  AMKViewController.m
-//  AMKLaunchTimeProfiler
+//  AMKRootViewController.m
+//  AMKLaunchTimeProfiler_Example
 //
-//  Created by mengxinxin on 06/22/2022.
-//  Copyright (c) 2022 mengxinxin. All rights reserved.
+//  Created by mengxinxin on 2022/5/11.
+//  Copyright © 2022 mengxinxin. All rights reserved.
 //
 
+#import "AMKRootViewController.h"
+#import "AMKNavigationController.h"
+#import "AMKHomeViewController.h"
 #import "AMKViewController.h"
 #import <AMKLaunchTimeProfiler/AMKLaunchTimeProfiler.h>
 
-@interface AMKViewController ()
+@interface AMKRootViewController ()
 
 @end
 
-@implementation AMKViewController
+@implementation AMKRootViewController
 
 #pragma mark - Dealloc
 
@@ -23,10 +26,9 @@
 
 #pragma mark - Init Methods
 
-- (instancetype)init {
-    if (self = [super init]) {
-        self.title = @"Other";
-        self.tabBarItem.title = self.title;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.title = NSStringFromClass(self.class);
     }
     return self;
 }
@@ -36,8 +38,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     AMKLaunchTimeProfilerOnceLogBegin(@"");
-    self.title = @"Other";
-    self.view.backgroundColor = self.view.backgroundColor?:[UIColor whiteColor];
+    self.viewControllers = @[
+        [AMKNavigationController.alloc initWithRootViewController:AMKHomeViewController.new],
+        [AMKNavigationController.alloc initWithRootViewController:AMKViewController.new],
+    ];
     AMKLaunchTimeProfilerOnceLogEnd(@"");
 }
 

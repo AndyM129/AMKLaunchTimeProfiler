@@ -1,19 +1,14 @@
 //
-//  AMKViewController.m
+//  UINavigationController+AMKLaunchTimeProfiler.m
 //  AMKLaunchTimeProfiler
 //
-//  Created by mengxinxin on 06/22/2022.
-//  Copyright (c) 2022 mengxinxin. All rights reserved.
+//  Created by mengxinxin on 2022/5/9.
 //
 
-#import "AMKViewController.h"
+#import "UINavigationController+AMKLaunchTimeProfiler.h"
 #import <AMKLaunchTimeProfiler/AMKLaunchTimeProfiler.h>
 
-@interface AMKViewController ()
-
-@end
-
-@implementation AMKViewController
+@implementation AMKLaunchTimeProfilerNavigationController
 
 #pragma mark - Dealloc
 
@@ -23,10 +18,9 @@
 
 #pragma mark - Init Methods
 
-- (instancetype)init {
-    if (self = [super init]) {
-        self.title = @"Other";
-        self.tabBarItem.title = self.title;
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
+    if (self = [super initWithRootViewController:rootViewController]) {
+        self.navigationBar.tintColor = AMKLaunchTimeProfilerTintColor;
     }
     return self;
 }
@@ -35,10 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AMKLaunchTimeProfilerOnceLogBegin(@"");
-    self.title = @"Other";
-    self.view.backgroundColor = self.view.backgroundColor?:[UIColor whiteColor];
-    AMKLaunchTimeProfilerOnceLogEnd(@"");
+    self.view.tintColor = AMKLaunchTimeProfilerTintColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,8 +38,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    AMKLaunchTimeProfilerOnceLogBegin(@"");
-    AMKLaunchTimeProfilerOnceLogEnd(@"");
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

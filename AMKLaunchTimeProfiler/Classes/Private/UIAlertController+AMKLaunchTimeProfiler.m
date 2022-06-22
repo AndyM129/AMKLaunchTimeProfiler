@@ -1,19 +1,18 @@
 //
-//  AMKViewController.m
+//  UIAlertController+AMKLaunchTimeProfiler.m
 //  AMKLaunchTimeProfiler
 //
-//  Created by mengxinxin on 06/22/2022.
-//  Copyright (c) 2022 mengxinxin. All rights reserved.
+//  Created by mengxinxin on 2022/5/9.
 //
 
-#import "AMKViewController.h"
+#import "UIAlertController+AMKLaunchTimeProfiler.h"
 #import <AMKLaunchTimeProfiler/AMKLaunchTimeProfiler.h>
 
-@interface AMKViewController ()
+@interface AMKLaunchTimeProfilerAlertController ()
 
 @end
 
-@implementation AMKViewController
+@implementation AMKLaunchTimeProfilerAlertController
 
 #pragma mark - Dealloc
 
@@ -23,22 +22,11 @@
 
 #pragma mark - Init Methods
 
-- (instancetype)init {
-    if (self = [super init]) {
-        self.title = @"Other";
-        self.tabBarItem.title = self.title;
-    }
-    return self;
-}
-
 #pragma mark - Life Circle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AMKLaunchTimeProfilerOnceLogBegin(@"");
-    self.title = @"Other";
-    self.view.backgroundColor = self.view.backgroundColor?:[UIColor whiteColor];
-    AMKLaunchTimeProfilerOnceLogEnd(@"");
+    self.view.tintColor = AMKLaunchTimeProfilerTintColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,8 +35,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    AMKLaunchTimeProfilerOnceLogBegin(@"");
-    AMKLaunchTimeProfilerOnceLogEnd(@"");
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
