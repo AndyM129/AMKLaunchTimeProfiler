@@ -5,14 +5,18 @@
 [![License](https://img.shields.io/cocoapods/l/AMKLaunchTimeProfiler.svg?style=flat)](https://cocoapods.org/pods/AMKLaunchTimeProfiler)
 [![Platform](https://img.shields.io/cocoapods/p/AMKLaunchTimeProfiler.svg?style=flat)](https://cocoapods.org/pods/AMKLaunchTimeProfiler)
 
+## 1、Features
 
-## Features
+* **零成本使用：** 通过 CocoaPods 一行代码接入，即可实现 APP 冷启动耗时统计，包括 `pre-main`、`main`、`首屏渲染`三个阶段的耗时，及总耗时
 
-1. **零成本使用：**通过 CocoaPods 一行代码接入，即可实现 APP 冷启动耗时统计，包括 `pre-main`、`main`、`首屏渲染`三个阶段的耗时，及总耗时
-2. **可视化查看：**内置日志查看页面，并自动高亮高耗时方法，各种信息一目了然
-3. **源数据导出：**可以方便的通过邮件、AirDrop 等方式 导出全部数据，具体包括
+* **可视化查看：** 内置日志查看页面，并自动高亮高耗时方法，各种信息一目了然
+
+* **源数据导出：** 可以方便的通过邮件、AirDrop 等方式 导出全部数据，具体包括
+
 	* 日志列表的文本数据，方便在电脑上查看
+
 	* 日志的JSON数据，方便基于日志的执行时间、调用方法、执行耗时 等信息 做自定义分析
+
 	* 多次有效数据的平均数 数据
 
 | ![31287f21b40610de7ca62a16bbcbe05f](README.assets/31287f21b40610de7ca62a16bbcbe05f.jpg) | ![14448cdb434da423818f6b819ec96591](README.assets/14448cdb434da423818f6b819ec96591.jpg) | ![ea4fb8a570ac2cf9769654c1ad51da1e](README.assets/ea4fb8a570ac2cf9769654c1ad51da1e.jpg) | ![4f6414aa477ba5588ffe200f3cec6e7e](README.assets/4f6414aa477ba5588ffe200f3cec6e7e.jpg) | ![fd7727cbed7e363acd8dffdd01f2e860](README.assets/fd7727cbed7e363acd8dffdd01f2e860.jpg) |
@@ -21,7 +25,9 @@
 
 
 
-## Installation
+
+
+## 2、Installation
 
 `AMKLaunchTimeProfiler` 可通过[CocoaPods](https://cocoapods.org)完成引入，仅需现在工程的`Podfile`文件中 添加如下代码
 
@@ -33,15 +39,25 @@ pod 'AMKLaunchTimeProfiler'
 
 
 
-## Usage
 
-### 查看相关日志
+
+## 3、Usage
+
+### 3.1、查看相关日志
 
 内置日志查看页面，并自动高亮高耗时方法，各种信息一目了然，具体可通过如下方式打开：
 
-1、通过 `AMKLaunchTimeProfiler.debugEnable = YES;` 启用调试模式（默认不启用），即可在 任意界面，通过「双指从右向左轻扫」的手势打开
 
-2、通过 `[AMKLaunchTimeProfilerLogsViewController.new presentingWithAnimated:YES completion:nil];` 使用代码打开
+
+#### 3.1.1、使用手势
+
+通过 `AMKLaunchTimeProfiler.debugEnable = YES;` 启用调试模式（默认不启用），即可在 任意界面，通过「双指从右向左轻扫」的手势打开
+
+
+
+#### 3.1.2、使用编码
+
+通过 `[AMKLaunchTimeProfilerLogsViewController.new presentingWithAnimated:YES completion:nil];` 使用代码打开
 
 
 
@@ -96,11 +112,11 @@ Device Name: Andy's iPhone 11 Pro Max
 
 
 
-### 导出日志
+### 3.2、导出日志
 
 在日志查看页面，点击右上角的“···”，点击发送，即可选择“邮件”或“其他”方式导出，具体包括：
 
-#### （1）AMKLaunchTimeProfiler_554b38e7f43a36526d5b74484930d2ad.log
+####  3.2.1、AMKLaunchTimeProfiler_554b38e7f43a36526d5b74484930d2ad.log
 
 ```
 ======================================================================
@@ -236,7 +252,7 @@ Device Name: Andy's iPhone 11 Pro Max
 
 
 
-#### （2）AMKLaunchTimeProfiler_554b38e7f43a36526d5b74484930d2ad.txt
+#### 3.2.2、AMKLaunchTimeProfiler_554b38e7f43a36526d5b74484930d2ad.txt
 
 ```
 2 次有效数据的平均数：
@@ -249,7 +265,7 @@ Device Name: Andy's iPhone 11 Pro Max
 
 
 
-#### （3）AMKLaunchTimeProfiler_554b38e7f43a36526d5b74484930d2ad.json
+#### 3.2.3、AMKLaunchTimeProfiler_554b38e7f43a36526d5b74484930d2ad.json
 
 ```json
 // 如下内容，已做精简
@@ -343,7 +359,9 @@ Device Name: Andy's iPhone 11 Pro Max
 
 
 
-### 自定义日志
+
+
+### 3.3、自定义日志
 
 对于耗时较高的方法，可以通过补充自定义日志的方式，辅助找出具体的耗时的操作，进而通过优化 实现提速冷启动，相关方法如下：
 
@@ -376,13 +394,17 @@ Device Name: Andy's iPhone 11 Pro Max
 
 
 
-## Author
+
+
+## 4、Author
 
 * 邮箱：andy_m129@163.com
 * 掘金：https://juejin.cn/user/2875978147966855
 
 
 
-## License
+
+
+## 5、License
 
 AMKLaunchTimeProfiler is available under the MIT license. See the LICENSE file for more info.
