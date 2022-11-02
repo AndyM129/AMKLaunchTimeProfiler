@@ -64,6 +64,9 @@
 }
 
 - (void)AMKLaunchTimeProfiler_UIResponder_hookSetWindow$ {
+    // 屏蔽掉了如下代码，模拟「无法自动赋值 AMKLaunchTimeProfiler.sharedInstance.firstScreenTime 」的情况
+    return;
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         

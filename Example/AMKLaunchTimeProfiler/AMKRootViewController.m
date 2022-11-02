@@ -12,10 +12,16 @@
 #import "AMKViewController.h"
 #import <AMKLaunchTimeProfiler/AMKLaunchTimeProfiler.h>
 
+// 注：为了考虑封装性，-firstScreenTime 被声明为了只读属性，可以通过「手动声明」来解决赋值
+@interface AMKLaunchTimeProfiler (issues_1)
+@property(nonatomic, assign, readwrite) NSTimeInterval firstScreenTime;
+@end
+
 @interface AMKRootViewController ()
 
 @end
 
+// 找到 UIApplication.sharedApplication.delegate.window.rootViewController 对应的类
 @implementation AMKRootViewController
 
 #pragma mark - Dealloc
@@ -53,6 +59,11 @@
     [super viewDidAppear:animated];
     AMKLaunchTimeProfilerOnceLogBegin(@"");
     AMKLaunchTimeProfilerOnceLogEnd(@"");
+    
+    // 新增代码：手动赋值 firstScreenTime
+    AMKLaunchTimeProfiler.sharedInstance.firstScreenTime = CFAbsoluteTimeGetCurrent() + kCFAbsoluteTimeIntervalSince1970;
+    AMKLaunchTimeProfilerInternalLog(@"first screen time: %@", [@(AMKLaunchTimeProfiler.sharedInstance.firstScreenTime) performSelector:@selector(amkltp_formattedDateStringForSystemTimeZone)]);
+    [NSNotificationCenter.defaultCenter postNotificationName:AMKLaunchTimeProfilerFirstScreenDidDisplayNotification object:AMKLaunchTimeProfiler.sharedInstance];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
