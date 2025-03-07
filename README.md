@@ -408,3 +408,15 @@ Device Name: Andy's iPhone 11 Pro Max
 ## 5、License
 
 AMKLaunchTimeProfiler is available under the MIT license. See the LICENSE file for more info.
+
+
+
+
+
+## 6、Thanks
+
+[![Stargazers repo roster for @AndyM129/AMKLaunchTimeProfiler](https://reporoster.com/stars/AndyM129/AMKLaunchTimeProfiler)](https://github.com/AndyM129/AMKLaunchTimeProfiler/stargazers)
+
+[![Forkers repo roster for @AndyM129/AMKLaunchTimeProfiler](https://reporoster.com/forks/AndyM129/AMKLaunchTimeProfiler)](https://github.com/AndyM129/AMKLaunchTimeProfiler/network/members)
+
+
